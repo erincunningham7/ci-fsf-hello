@@ -26,3 +26,9 @@ def test_get_edit_item_page(self):
 def test_can_add_item(self):
     response = self.client.post('/add', {'name': 'Test Added Item'})
     self.assertRedirects(response, '/')
+
+
+ def test_can_delete_item(self):
+        item = Item.objects.create(name='Test Todo Item')
+        response = self.client.get(f'/delete/{item.id}')
+
